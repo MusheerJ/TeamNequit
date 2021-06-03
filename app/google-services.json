@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "285520334231",
+    "project_id": "team-nequit",
+    "storage_bucket": "team-nequit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285520334231:android:1c4a46652a4e207665c8d2",
+        "android_client_info": {
+          "package_name": "com.teamnequit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285520334231-4318c97ncce9rdg06bkocvkmho4pspga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFIUBz4qgt-3hd35VJXPeJLsljTj5zHrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285520334231-4318c97ncce9rdg06bkocvkmho4pspga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
