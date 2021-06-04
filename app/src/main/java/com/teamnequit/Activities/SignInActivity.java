@@ -36,6 +36,7 @@ public class SignInActivity extends AppCompatActivity {
         dialog = new ProgressDialog(SignInActivity.this);
         dialog.setMessage("Login you in please wait ...");
         dialog.setCancelable(false);
+        //UserLogin
         binding.userLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,15 +65,27 @@ public class SignInActivity extends AppCompatActivity {
                             dialog.dismiss();
                             startActivity(new Intent(SignInActivity.this,MainActivity.class));
                             finish();
+
+                            binding.userEmail.setText(null);
+                            binding.userPassword.setText(null);
+
                         }
                     }
                 });
 
-                binding.userEmail.setText(null);
-                binding.userPassword.setText(null);
 
             }
         });
+
+        //User forgot Password
+        binding.userForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            startActivity(new Intent(SignInActivity.this,ForgotPassActivity.class));
+            }
+        });
+
 
 
     }
