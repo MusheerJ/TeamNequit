@@ -31,11 +31,20 @@ public class SignInActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
+
+
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         dialog = new ProgressDialog(SignInActivity.this);
         dialog.setMessage("Login you in please wait ...");
         dialog.setCancelable(false);
+
+        if(auth.getCurrentUser()!=null)
+        {
+            startActivity(new Intent(SignInActivity.this,MainActivity.class));
+            finishAffinity();
+        }
+
         //UserLogin
         binding.userLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,19 +62,15 @@ public class SignInActivity extends AppCompatActivity {
                 dialog.show();
                 String UserMail = binding.userEmail.getText().toString();
                 String UserPass = binding.userPassword.getText().toString();
-                auth.createUserWithEmailAndPassword(UserMail,UserPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                auth.signInWithEmailAndPassword(UserMail,UserPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            Users user = new Users(UserMail,UserPass);
-                            String Uid = auth.getUid();
-                            database.getReference().child("Users").child(Uid).setValue(user);
-                            Toast.makeText(SignInActivity.this,"userCreated !",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this,"Signed In",Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                             startActivity(new Intent(SignInActivity.this,MainActivity.class));
                             finish();
-
                             binding.userEmail.setText(null);
                             binding.userPassword.setText(null);
 
@@ -83,6 +88,14 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
 
             startActivity(new Intent(SignInActivity.this,ForgotPassActivity.class));
+            }
+        });
+
+
+        binding.userForgotPass2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignInActivity.this,AddNeUserActivity.class));
             }
         });
 
