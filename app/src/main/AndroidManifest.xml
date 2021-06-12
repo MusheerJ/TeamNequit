@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/team_nequit_hero_img1"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamNequit">
-        <activity android:name=".Activities.MemberList.ViewMemberDetailsActivity"></activity>
+        <activity android:name=".Activities.TeamReferenceDoc.TeamRefDocActivity"></activity>
+        <activity android:name=".Activities.Rules.TeamsRulesActivity" />
+        <activity android:name=".Activities.TeamGoals.TeamGoalsActivity" />
+        <activity android:name=".Activities.FeedBack.FeedBackActivity" />
+        <activity android:name=".Activities.SelfUserProfileActivity" />
+        <activity android:name=".Activities.MemberList.ViewMemberDetailsActivity" />
         <activity android:name=".Activities.MemberList.ViewMemberListActivity" />
         <activity android:name=".Activities.SplashScreenActivity">
             <intent-filter>

@@ -6,15 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.teamnequit.Activities.FeedBack.FeedBackActivity;
 import com.teamnequit.Activities.MemberList.ViewMemberListActivity;
+import com.teamnequit.Activities.Rules.TeamsRulesActivity;
+import com.teamnequit.Activities.TeamGoals.TeamGoalsActivity;
+import com.teamnequit.Activities.TeamReferenceDoc.TeamRefDocActivity;
 import com.teamnequit.R;
 
 public class HomeFragment extends Fragment {
@@ -35,6 +36,45 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(getContext(), ViewMemberListActivity.class));
             }
         });
+
+        //FeedBack Activity
+        ImageView feedBack = root.findViewById(R.id.teamFeedBack);
+        feedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), FeedBackActivity.class));
+            }
+        });
+
+        //teamGoals
+        ImageView teamGoals = root.findViewById(R.id.teamGoals);
+        teamGoals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), TeamGoalsActivity.class);
+                startActivity(i);
+            }
+        });
+
+        //teamRules
+        ImageView teamRules = root.findViewById(R.id.teamRules);
+        teamRules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), TeamsRulesActivity.class));
+            }
+        });
+
+
+        //teamReferenceDoc
+        ImageView teamRefDoc = root.findViewById(R.id.teamReferenceDoc);
+        teamRefDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), TeamRefDocActivity.class));
+            }
+        });
+
 
 
         return root;

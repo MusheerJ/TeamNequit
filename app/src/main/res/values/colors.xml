@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="teamTheme">#FF6231</color>
     <color name="teamTheme1">#F64D18</color>
+    <color name="toolbar1">#f77f00</color>
+    <color name="topbar">#cc6900</color>
 </resources>

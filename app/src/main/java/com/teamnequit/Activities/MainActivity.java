@@ -2,11 +2,13 @@ package com.teamnequit.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     NavHeaderMainBinding navHeaderMainBinding;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    Users user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +71,36 @@ public class MainActivity extends AppCompatActivity {
         database.getReference().child("Users").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Users user = snapshot.getValue(Users.class);
+                user = snapshot.getValue(Users.class);
                 navHeaderMainBinding.userName.setText(user.getUserName());
                 navHeaderMainBinding.userMail.setText(user.getUserEmail());
+                String userRoll = user.getUserEmail().substring(0,7);
+                String userP = "https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F"+userRoll+".jpeg?alt=media&token=";
+                Glide.with(MainActivity.this).load(userP).placeholder(R.drawable.ic_avatar).into(navHeaderMainBinding.imageView);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.nav_gallery:
+                        Intent i = new Intent(MainActivity.this,SelfUserProfileActivity.class);
+                        i.putExtra("Self",user);
+                        startActivity(i);
+                        break;
+                    case R.id.nav_home:
+                        drawer.closeDrawer(Gravity.LEFT);
+                        break;
+
+                }
+                return false;
             }
         });
 
@@ -109,4 +134,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }

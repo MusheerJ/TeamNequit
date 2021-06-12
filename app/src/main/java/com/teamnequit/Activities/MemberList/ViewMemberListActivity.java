@@ -22,13 +22,14 @@ import com.teamnequit.R;
 import com.teamnequit.databinding.ActivityViewMemberListBinding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ViewMemberListActivity extends AppCompatActivity {
 
     ActivityViewMemberListBinding binding;
     FirebaseDatabase database;
     FirebaseAuth auth;
-    ArrayList<Users> users;
+    ArrayList <Users> users;
     MembersAdapter adapter;
     ProgressDialog progressDialog;
     @Override
