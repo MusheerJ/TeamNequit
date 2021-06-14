@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.teamnequit.Activities.AttendanceSheet.TeamAttendanceActivity;
 import com.teamnequit.Activities.FeedBack.FeedBackActivity;
 import com.teamnequit.Activities.MemberList.ViewMemberListActivity;
 import com.teamnequit.Activities.Rules.TeamsRulesActivity;
@@ -74,6 +75,17 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getContext(), TeamRefDocActivity.class));
             }
         });
+
+        //teamAttendance
+
+        ImageView teamAttendance = root.findViewById(R.id.teamMembersAttendance);
+        teamAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), TeamAttendanceActivity.class));
+            }
+        });
+
 
 
 
