@@ -40,13 +40,13 @@ public class MemberViewAttendanceAdapter extends RecyclerView.Adapter<MemberView
     if (attendance.getStatus().toLowerCase().equals("p"))
     {
         holder.binding.Status.setText(attendance.getStatus());
-        holder.binding.Status.setTextColor(Color.parseColor("#2979FF"));;
+        holder.binding.Status.setTextColor(Color.parseColor("#FF06A76F"));;
 
     }
     else
         {
             holder.binding.Status.setText(attendance.getStatus());
-            holder.binding.Status.setTextColor(Color.parseColor("#FF1744"));;
+            holder.binding.Status.setTextColor(Color.parseColor("#e4002b"));;
         }
 
     }

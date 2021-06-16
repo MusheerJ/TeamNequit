@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.teamnequit.Activities.AttendanceSheet.ViewMemberAttendanceActivity;
+import com.teamnequit.Activities.MomSheet.ViewMomActivity;
 import com.teamnequit.R;
 import com.teamnequit.databinding.SampleAttendanceBinding;
 
@@ -19,10 +21,12 @@ public class MemberDateAdapter extends RecyclerView.Adapter<MemberDateAdapter.Me
 {
     Context context;
     ArrayList<String> dates;
+    String UsedBy;
 
-    public MemberDateAdapter(Context context, ArrayList<String> dates) {
+    public MemberDateAdapter(Context context, ArrayList<String> dates,String usedBy) {
         this.context = context;
         this.dates = dates;
+        this.UsedBy = usedBy;
     }
 
     @NonNull
@@ -39,9 +43,21 @@ public class MemberDateAdapter extends RecyclerView.Adapter<MemberDateAdapter.Me
         holder.binding.dateTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, ViewMemberAttendanceActivity.class);
-                i.putExtra("attendanceDate",date);
-                context.startActivity(i);
+                if (UsedBy.contains("MOM"))
+                {
+//                    Toast.makeText(context,UsedBy,Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, ViewMomActivity.class);
+                    String loc = UsedBy+"/"+date;
+                    i.putExtra("Loc",loc);
+                    context.startActivity(i);
+                }
+                else
+                    {
+                        Intent i = new Intent(context, ViewMemberAttendanceActivity.class);
+                        i.putExtra("attendanceDate",date);
+                        context.startActivity(i);
+                    }
+
             }
         });
 
@@ -51,6 +67,12 @@ public class MemberDateAdapter extends RecyclerView.Adapter<MemberDateAdapter.Me
     public int getItemCount() {
         return dates.size();
     }
+
+    public void filter(ArrayList<String> dates) {
+        this.dates = dates;
+        notifyDataSetChanged();
+    }
+
 
     public class MemberDateViewHolder extends RecyclerView.ViewHolder{
         SampleAttendanceBinding binding;

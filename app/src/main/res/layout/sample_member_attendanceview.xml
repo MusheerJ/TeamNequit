@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:layout_margin="5dp">
 
     <LinearLayout
@@ -47,7 +46,7 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center|right"
             android:text="P"
-            android:textColor="#2979FF"
+            android:textColor="#06A76F"
             android:textSize="18sp" />
 
     </LinearLayout>

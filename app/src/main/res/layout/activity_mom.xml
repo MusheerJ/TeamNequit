@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5eee6"
-    tools:context=".Activities.FeedBack.FeedBackActivity">
+    android:background="@color/teamback"
+    tools:context=".Activities.MomSheet.MomActivity">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,10 +22,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/AccumulatorDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -44,7 +45,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/ChargerDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -63,7 +64,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/CoolingDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -82,7 +83,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/DriveDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -101,7 +102,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/SensorDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -120,7 +121,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/TractiveDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -139,7 +140,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/MotorDpt"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
@@ -150,6 +151,26 @@
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="Motor Department"
+                    android:textColor="#f77f00"
+                    android:textSize="18sp" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/OtherDpt"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="Other MOMs"
                     android:textColor="#f77f00"
                     android:textSize="18sp" />
 

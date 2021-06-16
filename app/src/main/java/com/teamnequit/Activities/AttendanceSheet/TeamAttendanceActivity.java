@@ -9,7 +9,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,7 +60,7 @@ public class TeamAttendanceActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
         dates = new ArrayList<>();
-        adapter = new MemberDateAdapter(this,dates);
+        adapter = new MemberDateAdapter(this,dates,"");
         binding.recyclerView2.setLayoutManager(new LinearLayoutManager(TeamAttendanceActivity.this));
         binding.recyclerView2.setAdapter(adapter);
 
@@ -107,7 +111,7 @@ public class TeamAttendanceActivity extends AppCompatActivity {
                         }
 
                         else {
-                          HashMap<String,String> hashMap = new HashMap<>();
+
 
                             date = attendenceDatedayBinding.AttendanceDate.getText().toString();
                             if(date.contains("/") || date.length() != 10 || !date.contains("-"))
@@ -115,7 +119,7 @@ public class TeamAttendanceActivity extends AppCompatActivity {
                                 attendenceDatedayBinding.AttendanceDate.setError("Invalid Date! Please match the given pattern");
                                 return;
                             }
-                            hashMap.put(date,date);
+
                             database.getReference().child("MemberAttendanceDates").child(date).setValue(date);
 
                             Intent i = new Intent(TeamAttendanceActivity.this,AddTeamAttendanceActivity.class);
@@ -134,9 +138,60 @@ public class TeamAttendanceActivity extends AppCompatActivity {
                 });
             }
         });
-        
+
+
+
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_members,menu);
+        MenuItem menuItem = menu.findItem(R.id.memberSearch);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search date ...");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    private void  filter(String newText)
+    {
+        ArrayList<String> filteredDates = new ArrayList<>();
+        if (newText.isEmpty())
+        {
+            adapter.filter(dates);
+            return;
+        }
+        else
+            {
+                for (String date : dates)
+                {
+                    if (date.contains(newText))
+                    {
+                        filteredDates.add(date);
+                    }
+                }
+
+            }
+        adapter.filter(filteredDates);
+    }
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

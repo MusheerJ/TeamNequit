@@ -1,4 +1,4 @@
-package com.teamnequit.Adapters;
+ package com.teamnequit.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class MemberAttendanceAdapter extends RecyclerView.Adapter<MemberAttendanceAdapter.MemberAttendanceViewHolder>{
     Context context;
     ArrayList<Users> users;
+    ArrayList<Users> backUp;
 
     String date;
     FirebaseDatabase database;
@@ -35,6 +36,7 @@ public class MemberAttendanceAdapter extends RecyclerView.Adapter<MemberAttendan
         this.context = context;
         this.users = users;
         this.date = date;
+        this.backUp = users;
 
     }
 
@@ -91,7 +93,7 @@ public class MemberAttendanceAdapter extends RecyclerView.Adapter<MemberAttendan
                                 status = "P";
                             }
                             MemberAttendance memberAttendance = new MemberAttendance(name,prn,status);
-                            database.getReference().child("MemberAttendance").child(date).child(memberAttendance.getPrn()).setValue(memberAttendance).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            database.getReference().child("MemberAttendance").child(date).child(memberAttendance.getName()).setValue(memberAttendance).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful())
@@ -106,7 +108,7 @@ public class MemberAttendanceAdapter extends RecyclerView.Adapter<MemberAttendan
                             Toast.makeText(context,"Please select one option !!",Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        users.remove(position);
+                        backUp.remove(users.remove(position));
                         notifyDataSetChanged();
                     }
                 });
@@ -123,7 +125,21 @@ public class MemberAttendanceAdapter extends RecyclerView.Adapter<MemberAttendan
 
     public boolean allMarked ()
     {
-        return users.isEmpty();
+        return backUp.isEmpty();
+    }
+
+    public void filter(ArrayList<Users> users) {
+        this.users = users;
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Users> getUsers() {
+        return this.users;
+    }
+
+    public ArrayList<Users> getBackUp()
+    {
+        return this.backUp;
     }
 
     public class MemberAttendanceViewHolder extends RecyclerView.ViewHolder{

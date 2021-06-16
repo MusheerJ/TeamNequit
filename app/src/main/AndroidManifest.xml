@@ -9,7 +9,10 @@
         android:roundIcon="@drawable/team_nequit_hero_img1"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamNequit">
-        <activity android:name=".Activities.AttendanceSheet.ViewMemberAttendanceActivity"></activity>
+        <activity android:name=".Activities.MomSheet.ViewMomActivity"></activity>
+        <activity android:name=".Activities.MomSheet.MomSheetActivity" />
+        <activity android:name=".Activities.MomSheet.MomActivity" />
+        <activity android:name=".Activities.AttendanceSheet.ViewMemberAttendanceActivity" />
         <activity android:name=".Activities.AttendanceSheet.AddTeamAttendanceActivity" />
         <activity android:name=".Activities.AttendanceSheet.TeamAttendanceActivity" />
         <activity android:name=".Activities.TeamReferenceDoc.TeamRefDocActivity" />
