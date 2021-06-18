@@ -15,6 +15,7 @@ import com.teamnequit.Activities.AttendanceSheet.TeamAttendanceActivity;
 import com.teamnequit.Activities.FeedBack.FeedBackActivity;
 import com.teamnequit.Activities.MemberList.ViewMemberListActivity;
 import com.teamnequit.Activities.MomSheet.MomActivity;
+import com.teamnequit.Activities.Polls.PollActivity;
 import com.teamnequit.Activities.Rules.TeamsRulesActivity;
 import com.teamnequit.Activities.TeamGoals.TeamGoalsActivity;
 import com.teamnequit.Activities.TeamReferenceDoc.TeamRefDocActivity;
@@ -59,11 +60,11 @@ public class HomeFragment extends Fragment {
         });
 
         //teamRules
-        ImageView teamRules = root.findViewById(R.id.teamRules);
-        teamRules.setOnClickListener(new View.OnClickListener() {
+        ImageView teamPolls = root.findViewById(R.id.teamPolls);
+        teamPolls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), TeamsRulesActivity.class));
+                startActivity(new Intent(getContext(), PollActivity.class));
             }
         });
 

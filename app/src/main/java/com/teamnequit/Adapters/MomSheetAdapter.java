@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.teamnequit.Activities.MomSheet.ViewMomActivity;
 import com.teamnequit.Models.MOMSheet;
 import com.teamnequit.R;
@@ -20,10 +22,12 @@ public class MomSheetAdapter extends RecyclerView.Adapter<MomSheetAdapter.MomShe
     Context context;
     ArrayList<MOMSheet> momSheets;
     ArrayList<MOMSheet> backUp;
+    String dept;
 
-    public MomSheetAdapter(Context context, ArrayList<MOMSheet> momSheets) {
+    public MomSheetAdapter(Context context, ArrayList<MOMSheet> momSheets,String dept) {
         this.context = context;
         this.momSheets = momSheets;
+        this.dept = dept;
     }
 
     @NonNull
@@ -37,12 +41,23 @@ public class MomSheetAdapter extends RecyclerView.Adapter<MomSheetAdapter.MomShe
     public void onBindViewHolder(@NonNull MomSheetViewHolder holder, int position) {
         MOMSheet sheet = momSheets.get(position);
         holder.binding.condate.setText(sheet.getDate());
+
         holder.binding.dateTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ViewMomActivity.class);
                 intent.putExtra("MOM",sheet);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.binding.dateTable.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String path = "MOM/"+dept+"/"+sheet.getDate();
+                FirebaseDatabase.getInstance().getReference().child(path).setValue(null);
+                Toast.makeText(context,"Deleted",Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
 

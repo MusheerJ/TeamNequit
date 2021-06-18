@@ -69,7 +69,7 @@ public class MomSheetActivity extends AppCompatActivity {
                 .create();
 
         sheets = new ArrayList<>();
-        adapter = new MomSheetAdapter(MomSheetActivity.this,sheets);
+        adapter = new MomSheetAdapter(MomSheetActivity.this,sheets,momSheet.getDptName());
 
         showMomSheet(binding);
         binding.addMom.setOnClickListener(new View.OnClickListener() {

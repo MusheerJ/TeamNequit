@@ -9,7 +9,10 @@
         android:roundIcon="@drawable/team_nequit_hero_img1"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamNequit">
-        <activity android:name=".Activities.MomSheet.ViewMomActivity"></activity>
+        <activity android:name=".Activities.Polls.PollRepliesActivity"></activity>
+        <activity android:name=".Activities.Polls.AddPollActivity" />
+        <activity android:name=".Activities.Polls.PollActivity" />
+        <activity android:name=".Activities.MomSheet.ViewMomActivity" />
         <activity android:name=".Activities.MomSheet.MomSheetActivity" />
         <activity android:name=".Activities.MomSheet.MomActivity" />
         <activity android:name=".Activities.AttendanceSheet.ViewMemberAttendanceActivity" />
