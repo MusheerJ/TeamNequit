@@ -1,21 +1,19 @@
 package com.teamnequit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.teamnequit.Models.Users;
-import com.teamnequit.R;
 import com.teamnequit.databinding.ActivitySignInBinding;
 
 public class SignInActivity extends AppCompatActivity {
@@ -74,6 +72,10 @@ public class SignInActivity extends AppCompatActivity {
                             binding.userEmail.setText(null);
                             binding.userPassword.setText(null);
 
+                        }
+                        else {
+                            Toast.makeText(SignInActivity.this,task.getException().toString(),Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                     }
                 });

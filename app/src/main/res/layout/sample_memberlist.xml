@@ -22,22 +22,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/poppins_medium"
             android:text="Musheer Jamadar"
-            android:textColor="#333333"
+            android:textColor="#1d1d1d"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/memberEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
             android:text="xyz@gmail.com" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
             android:layout_marginTop="5dp"
-            android:background="#141414"
+            android:background="#1d1d1d"
             android:orientation="horizontal"></LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

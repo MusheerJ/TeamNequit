@@ -9,6 +9,7 @@
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/teamReferenceDocPDF"
         android:layout_width="match_parent"
+        android:forceDarkAllowed="false"
         android:layout_height="match_parent">
 
     </com.github.barteksc.pdfviewer.PDFView>

@@ -25,14 +25,17 @@
                 android:id="@+id/MemberName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#1d1d1d"
                 android:text="MusheerAhmed  Raj  Jamadar"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/MemberPrn"
                 android:layout_width="match_parent"
+                android:textSize="14sp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:text="xyz@gmail.com" />
         </LinearLayout>
 
@@ -43,7 +46,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="center|right"
             android:text="P"
             android:textColor="#06A76F"

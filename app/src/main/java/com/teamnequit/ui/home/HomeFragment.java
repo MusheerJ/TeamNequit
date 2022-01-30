@@ -1,6 +1,7 @@
 package com.teamnequit.ui.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ import com.teamnequit.Activities.FeedBack.FeedBackActivity;
 import com.teamnequit.Activities.MemberList.ViewMemberListActivity;
 import com.teamnequit.Activities.MomSheet.MomActivity;
 import com.teamnequit.Activities.Polls.PollActivity;
-import com.teamnequit.Activities.Rules.TeamsRulesActivity;
 import com.teamnequit.Activities.TeamGoals.TeamGoalsActivity;
 import com.teamnequit.Activities.TeamReferenceDoc.TeamRefDocActivity;
 import com.teamnequit.R;
@@ -84,6 +84,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), TeamAttendanceActivity.class));
+            }
+        });
+
+        // KIP
+        ImageView teamKPI = root.findViewById(R.id.teamKPI);
+        teamKPI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String url = "https://docs.google.com/spreadsheets/d/16aY4Y_xN_CAe-pzdspK8nVl3-EbW1vqc6Ru3QyiyH0Q/edit?usp=sharing";
+                Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse(url) );
+                startActivity((browse));
             }
         });
 

@@ -16,9 +16,20 @@ public class TeamsRulesActivity extends AppCompatActivity {
         binding = ActivityTeamsRulesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getSupportActionBar().setTitle("Team Rules");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        binding.teamRulesPDF.fromAsset("FB_rules2021.pdf").load();
+        String newsLetter = getIntent().getStringExtra("news");
+
+        if (newsLetter.isEmpty()){
+            getSupportActionBar().setTitle("Team Rules");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            binding.teamRulesPDF.fromAsset("TeamRules.pdf").load();
+        }
+        else {
+            getSupportActionBar().setTitle(newsLetter);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            binding.teamRulesPDF.fromAsset("NeverQuit7.0NewsLetter.pdf").load();
+        }
+
+
     }
 
     @Override

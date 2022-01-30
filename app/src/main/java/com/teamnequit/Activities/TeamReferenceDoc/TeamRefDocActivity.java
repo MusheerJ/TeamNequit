@@ -18,7 +18,7 @@ public class TeamRefDocActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Team Reference Documents");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding.teamReferenceDocPDF.fromAsset("TeamNeQuitGoalSheet2021.pdf").load();
+        binding.teamReferenceDocPDF.fromAsset("FB_rules2021.pdf").load();
     }
 
     @Override

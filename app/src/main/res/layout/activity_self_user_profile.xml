@@ -20,11 +20,11 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/imageView3"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             app:civ_border_width="0dp"
-            app:srcCompat="@drawable/team_nequit_hero_img1" />
+            app:srcCompat="@drawable/avatar" />
 
     </androidx.cardview.widget.CardView>
 
@@ -32,7 +32,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="200dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:orientation="vertical">
@@ -63,26 +64,27 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="User name"
                 android:textColor="#59000000"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/SelfUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_medium"
+
+                android:fontFamily="@font/poppins_medium"
                 android:text="MusheerAhmed"
-                android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textColor="#1d1d1d"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="7dp"
-                android:background="#78000000"
+                android:background="#1d1d1d"
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
@@ -97,26 +99,26 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="User mail"
                 android:textColor="#59000000"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/SelfUserMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="MusheerAhmed"
-                android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textColor="#1d1d1d"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="7dp"
-                android:background="#78000000"
+                android:background="#1d1d1d"
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
@@ -126,31 +128,32 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="User phone"
                 android:textColor="#59000000"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/SelfUserPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="MusheerAhmed"
-                android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textColor="#1d1d1d"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="7dp"
-                android:background="#78000000"
+                android:background="#1d1d1d"
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
@@ -160,31 +163,32 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="User DOB"
                 android:textColor="#59000000"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/SelfUserDOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="MusheerAhmed"
-                android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textColor="#1d1d1d"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="7dp"
-                android:background="#78000000"
+                android:background="#1d1d1d"
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
@@ -194,31 +198,32 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="User college department"
                 android:textColor="#59000000"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/SelfUserClgDpt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="MusheerAhmed"
-                android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textColor="#1d1d1d"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="7dp"
-                android:background="#78000000"
+                android:background="#1d1d1d"
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
@@ -228,33 +233,60 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="User club department"
                 android:textColor="#59000000"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/SelfUserClubDpt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="MusheerAhmed"
-                android:textColor="#333333"
-                android:textSize="18sp" />
+                android:textColor="#1d1d1d"
+                android:textSize="17sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
                 android:layout_marginTop="7dp"
-                android:background="#78000000"
+                android:background="#1d1d1d"
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
+        <Button
+            android:id="@+id/UploadProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="@color/toolbar1"
+            android:text="Upload Profile"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/SaveProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="@color/toolbar1"
+            android:text="Save Profile"
+            android:visibility="gone"
+            android:textColor="@color/white" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

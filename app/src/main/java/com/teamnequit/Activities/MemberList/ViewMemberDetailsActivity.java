@@ -1,9 +1,8 @@
 package com.teamnequit.Activities.MemberList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,8 +41,11 @@ public class ViewMemberDetailsActivity extends AppCompatActivity {
         binding.memberUserClubDpt.setText(user.getUserNeqDpt());
 
         String userRoll = user.getUserEmail().substring(0,7);
-        String userP = "https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F"+userRoll+".jpeg?alt=media&token=";
-        Glide.with(this).load(userP).placeholder(R.drawable.ic_avatar).into(binding.imageView3);
+        String userP = "https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F"+userRoll+"?alt=media&token=";
+
+//        https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F1910054?alt=media&token=213d0f2d-a4f8-4119-b9a1-ffa3cce7be3c
+        //https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F1909021?alt=media&token=3137be54-c2bc-45d0-b732-8819d6ecb220
+        Glide.with(this).load(userP).placeholder(R.drawable.avatar).into(binding.imageView3);
 
 
 

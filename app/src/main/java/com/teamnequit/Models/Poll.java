@@ -3,12 +3,30 @@ package com.teamnequit.Models;
 import java.io.Serializable;
 
 public class Poll implements Serializable {
-    String pollDate,preparedBy,pollQue;
+    String pollDate,preparedBy,pollQue,pollOp1,pollOp2;
 
     public Poll(String pollDate, String preparedBy, String pollQue) {
         this.pollDate = pollDate;
         this.preparedBy = preparedBy;
         this.pollQue = pollQue;
+    }
+
+
+
+    public String getPollOp1() {
+        return pollOp1;
+    }
+
+    public void setPollOp1(String pollOp1) {
+        this.pollOp1 = pollOp1;
+    }
+
+    public String getPollOp2() {
+        return pollOp2;
+    }
+
+    public void setPollOp2(String pollOp2) {
+        this.pollOp2 = pollOp2;
     }
 
     public Poll() {

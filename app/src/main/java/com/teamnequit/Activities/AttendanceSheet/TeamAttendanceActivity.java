@@ -1,11 +1,8 @@
 package com.teamnequit.Activities.AttendanceSheet;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +10,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,8 +28,7 @@ import com.teamnequit.databinding.ActivityTeamAttandanceBinding;
 import com.teamnequit.databinding.AttendenceDatedayBinding;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
 public class TeamAttendanceActivity extends AppCompatActivity {
 
@@ -35,7 +37,6 @@ public class TeamAttendanceActivity extends AppCompatActivity {
     MemberDateAdapter adapter;
     ArrayList<String> dates;
     ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,31 @@ public class TeamAttendanceActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Team Attendance");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getEmail().substring(0,7);
+
+        //is CoreMember
+        FirebaseDatabase.getInstance().getReference().child("CoreMembers").child(currentUser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    binding.addAllTeamAttendance.setVisibility(View.VISIBLE);
+                }
+                else{
+                    binding.addAllTeamAttendance.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+//        if (isCoreMember){
+//            binding.addAllTeamAttendance.setVisibility(View.VISIBLE);
+//        }else{
+//            binding.addAllTeamAttendance.setVisibility(View.GONE);
+//        }
 
         progressDialog = new ProgressDialog(TeamAttendanceActivity.this);
         progressDialog.setMessage("Loading ....");
@@ -73,6 +99,7 @@ public class TeamAttendanceActivity extends AppCompatActivity {
                     String date = snapshot1.getValue(String.class);
                     dates.add(date);
                 }
+                Collections.reverse(dates);
                 adapter.notifyDataSetChanged();
                 progressDialog.dismiss();
             }
@@ -89,12 +116,19 @@ public class TeamAttendanceActivity extends AppCompatActivity {
         binding.addAllTeamAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 attendance.show();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                attendenceDatedayBinding.AttendanceDate.requestFocus();
                 attendenceDatedayBinding.cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         attendenceDatedayBinding.AttendanceDate.setText(null);
                         attendenceDatedayBinding.AttendanceDate.setError(null);
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                         attendance.dismiss();
                     }
                 });
@@ -130,6 +164,8 @@ public class TeamAttendanceActivity extends AppCompatActivity {
 
                             attendenceDatedayBinding.AttendanceDate.setText(null);
                             attendenceDatedayBinding.AttendanceDate.setError(null);
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 
 
                         }

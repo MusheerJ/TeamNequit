@@ -6,6 +6,10 @@ public class Users implements Serializable
 {
     private  String userName,userEmail,userPass,userPhone,userClgDpt,userNeqDpt,userBOb;
 
+
+
+    private String userProfile;
+
     public Users(String userEmail, String userPass) {
         this.userEmail = userEmail;
         this.userPass = userPass;
@@ -79,5 +83,13 @@ public class Users implements Serializable
 
     public void setUserBOb(String userBOb) {
         this.userBOb = userBOb;
+    }
+
+    public String getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(String userProfile) {
+        this.userProfile = userProfile;
     }
 }

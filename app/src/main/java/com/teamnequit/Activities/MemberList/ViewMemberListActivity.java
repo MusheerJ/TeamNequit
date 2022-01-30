@@ -1,15 +1,15 @@
 package com.teamnequit.Activities.MemberList;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +22,6 @@ import com.teamnequit.R;
 import com.teamnequit.databinding.ActivityViewMemberListBinding;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ViewMemberListActivity extends AppCompatActivity {
 
@@ -52,7 +51,7 @@ public class ViewMemberListActivity extends AppCompatActivity {
         binding.recyclerView.setAdapter(adapter);
 
 
-        database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("MemberList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

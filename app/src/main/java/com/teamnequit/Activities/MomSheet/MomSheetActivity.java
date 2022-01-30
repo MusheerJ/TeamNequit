@@ -1,36 +1,37 @@
 package com.teamnequit.Activities.MomSheet;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.SearchView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.teamnequit.Adapters.MemberDateAdapter;
 import com.teamnequit.Adapters.MomSheetAdapter;
 import com.teamnequit.Models.MOMSheet;
 import com.teamnequit.R;
 import com.teamnequit.databinding.ActivityMomSheetBinding;
-import com.teamnequit.databinding.ActivityViewMomBinding;
 import com.teamnequit.databinding.MomParametersBinding;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.SplittableRandom;
+import java.util.Collections;
 
 public class MomSheetActivity extends AppCompatActivity {
 
@@ -71,11 +72,33 @@ public class MomSheetActivity extends AppCompatActivity {
         sheets = new ArrayList<>();
         adapter = new MomSheetAdapter(MomSheetActivity.this,sheets,momSheet.getDptName());
 
+
+        //Check if the current can add the mom or not
+        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getEmail().substring(0,7);
+        //isHead
+        FirebaseDatabase.getInstance().getReference().child("Heads").child(currentUser).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    binding.addMom.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         showMomSheet(binding);
         binding.addMom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.show();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                mBinding.preparedBy.requestFocus();
                 addMomSheet(mBinding,dialog,DepartmentName);
             }
         });
@@ -116,6 +139,8 @@ public class MomSheetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setMomParaMetersToNull(binding);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                 dialog.dismiss();
             }
         });
@@ -135,6 +160,7 @@ public class MomSheetActivity extends AppCompatActivity {
                     MOMSheet sheet = snapshot1.getValue(MOMSheet.class);
                     sheets.add(sheet);
                 }
+                Collections.reverse(sheets);
                 adapter.notifyDataSetChanged();
                 pdialog.dismiss();
             }
@@ -184,6 +210,12 @@ public class MomSheetActivity extends AppCompatActivity {
             return false;
         }
         else{
+            String date = binding.momDate.getText().toString();
+            if (date.contains("/") || date.length() != 10 || !date.contains("-"))
+            {
+                binding.momDate.setError("Invalid Date! Please match the given pattern (dd-mm-yyyy)");
+                return false;
+            }
             momSheet.setDate(binding.momDate.getText().toString());
         }
 
@@ -226,6 +258,50 @@ public class MomSheetActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_members,menu);
+        MenuItem menuItem = menu.findItem(R.id.memberSearch);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search ...");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void  filter(String newText)
+    {
+        ArrayList<MOMSheet> filteredSheets = new ArrayList<>();
+        if (newText.isEmpty())
+        {
+            adapter.filter(sheets);
+            return;
+        }
+        else
+        {
+            for (MOMSheet sheet : sheets)
+            {
+                if (sheet.getDate().contains(newText))
+                {
+                    filteredSheets.add(sheet);
+                }
+            }
+
+        }
+        adapter.filter(filteredSheets);
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

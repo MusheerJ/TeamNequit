@@ -30,11 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Polls for All Team Member"
-                android:textColor="#f77f00"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="left"
+                android:text="Polls for All Team Member"
                 android:textAlignment="gravity"
+                android:textColor="#f77f00"
                 android:textSize="18sp" />
 
         </androidx.cardview.widget.CardView>
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Polls for All Heads"
                 android:textColor="#f77f00"
                 android:textSize="18sp" />
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="Polls for Core Members"
                 android:textColor="#f77f00"

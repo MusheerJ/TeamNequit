@@ -40,6 +40,7 @@
                     android:layout_column="1"
                     android:layout_gravity="center"
                     android:text="DATE"
+                    android:fontFamily="@font/poppins"
                     android:textColor="#1d1d1d"
                     android:textSize="20sp" />
 
@@ -50,6 +51,7 @@
                     android:layout_column="1"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:fontFamily="@font/poppins"
                     android:text="11/03/2021"
                     android:textColor="#1d1d1d"
                     android:textSize="20sp" />

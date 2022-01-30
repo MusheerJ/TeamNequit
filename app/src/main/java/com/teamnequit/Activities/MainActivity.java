@@ -1,35 +1,36 @@
 package com.teamnequit.Activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 import com.bumptech.glide.Glide;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.teamnequit.Activities.ContactDevs.ContactDevsActivity;
+import com.teamnequit.Activities.Rules.TeamsRulesActivity;
 import com.teamnequit.Models.Users;
 import com.teamnequit.R;
 import com.teamnequit.databinding.ActivityMainBinding;
 import com.teamnequit.databinding.NavHeaderMainBinding;
-
-import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     Users user;
+    Users profile;
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar();
+//        toolbar.setForceDarkAllowed(false);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.LogOut)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -68,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         navHeaderMainBinding = NavHeaderMainBinding.bind(navigationView.getHeaderView(0));
+        
         database.getReference().child("Users").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -75,15 +81,24 @@ public class MainActivity extends AppCompatActivity {
                 navHeaderMainBinding.userName.setText(user.getUserName());
                 navHeaderMainBinding.userMail.setText(user.getUserEmail());
                 String userRoll = user.getUserEmail().substring(0,7);
-                String userP = "https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F"+userRoll+".jpeg?alt=media&token=";
-                Glide.with(MainActivity.this).load(userP).placeholder(R.drawable.ic_avatar).into(navHeaderMainBinding.imageView);
+                try {
+                    String userP = "https://firebasestorage.googleapis.com/v0/b/team-nequit.appspot.com/o/usersprofiles%2F"+userRoll+".jpeg?alt=media&token=";
+                    Glide.with(MainActivity.this).load(user.getUserProfile()).placeholder(R.drawable.avatar).into(navHeaderMainBinding.imageView);
+                }
+                catch (Exception e){
+//                    Toast.makeText(MainActivity.this,"Please Restart the App!!",Toast.LENGTH_SHORT).show();
+                }
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+
 
         binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -98,7 +113,24 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         drawer.closeDrawer(Gravity.LEFT);
                         break;
-
+                    case R.id.Rules:
+                        Intent intent = new Intent(MainActivity.this, TeamsRulesActivity.class);
+                        intent.putExtra("news","");
+                        startActivity(intent);
+                        break;
+                    case R.id.newsLetter:
+                        Intent intent1 = new Intent(MainActivity.this,TeamsRulesActivity.class);
+                        intent1.putExtra("news","News Letter");
+                        startActivity(intent1);
+                        break;
+                    case R.id.AbtDevs:
+                        startActivity(new Intent(MainActivity.this, ContactDevsActivity.class));
+                        break;
+                    case R.id.LogOut:
+                        Toast.makeText(MainActivity.this,"Signed Out",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,SignInActivity.class));
+                        auth.signOut();
+                        break;
                 }
                 return false;
             }
@@ -135,4 +167,9 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    protected void onPause() {
+//        finishAffinity();
+        super.onPause();
+    }
 }

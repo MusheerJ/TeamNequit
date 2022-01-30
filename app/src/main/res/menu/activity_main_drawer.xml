@@ -2,13 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view"
+
     >
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_home"
+            />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_avatar"
@@ -18,7 +20,15 @@
             android:icon="@drawable/ic_file"
             android:title="Rules" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/newsLetter"
+            android:icon="@drawable/ic_info"
+            android:title="News Letter" />
+        <item
+            android:id="@+id/AbtDevs"
+            android:icon="@drawable/ic_contact__1_"
+            android:title="Contact Devs" />
+        <item
+            android:id="@+id/LogOut"
             android:icon="@drawable/ic_left_arrowblack"
             android:title="Logout" />
 
