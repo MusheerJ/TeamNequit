@@ -115,6 +115,51 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewHolder
             }
         });
 
+        holder.binding.dateTable.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                String currentUser = FirebaseAuth.getInstance().getCurrentUser().getEmail().substring(0,7);
+                //isHead
+                FirebaseDatabase.getInstance().getReference().child("Heads").child(currentUser).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            Poll.show();
+                        }
+                        else{
+                            Toast.makeText(context,"You dont have access to delete !!!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                return false;
+            }
+        });
+
+        deleteBinding.deleteAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                database.getReference().child("Polls").child(pollFor).child("PollList").child(poll.getPollDate()).setValue(null);
+                database.getReference().child("Polls").child(pollFor).child("Replies").child(poll.getPollDate()).setValue(null);
+                Toast.makeText(context,"Deleted",Toast.LENGTH_SHORT).show();
+                Poll.dismiss();
+            }
+        });
+
+        deleteBinding.CancelAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Poll.dismiss();
+            }
+        });
+
     }
 
     @Override

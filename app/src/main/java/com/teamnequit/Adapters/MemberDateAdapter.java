@@ -99,6 +99,33 @@ public class MemberDateAdapter extends RecyclerView.Adapter<MemberDateAdapter.Me
             }
         });
 
+        //Show Dialog
+        holder.binding.dateTable.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                attendance.show();
+                return false;
+            }
+        });
+        //Delete Attendance
+        deleteBinding.deleteAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                database.getReference().child("MemberAttendance").child(date).setValue(null);
+                database.getReference().child("MemberAttendanceDates").child(date).setValue(null);
+                Toast.makeText(context,"Deleted",Toast.LENGTH_SHORT).show();
+                attendance.dismiss();
+
+            }
+        });
+        deleteBinding.CancelAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                attendance.dismiss();
+            }
+        });
+
     }
 
     @Override

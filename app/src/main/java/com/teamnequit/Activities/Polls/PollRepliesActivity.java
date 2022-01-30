@@ -171,6 +171,13 @@ public class PollRepliesActivity extends AppCompatActivity {
             }
         });
 
+        binding.pollReplyOp1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.ReplyText.setVisibility(View.GONE);
+            }
+        });
+
         binding.PollCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
