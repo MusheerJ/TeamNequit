@@ -1,9 +1,5 @@
 package com.teamnequit.Activities.Polls;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +19,6 @@ import com.teamnequit.Adapters.PollRepliesAdapter;
 import com.teamnequit.Models.Poll;
 import com.teamnequit.Models.PollReplies;
 import com.teamnequit.databinding.ActivityPollRepliesBinding;
-
 import java.util.ArrayList;
 
 public class PollRepliesActivity extends AppCompatActivity {
@@ -133,6 +128,7 @@ public class PollRepliesActivity extends AppCompatActivity {
                         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 
                     }
+
                 }
                 replies.setReplyBy(name);
                 database.getReference().child("Polls").child(pollFor).child("Replies").child(poll.getPollDate()).child(replies.getReplyBy()).setValue(replies);
