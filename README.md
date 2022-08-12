@@ -13,7 +13,7 @@
 
 
 <h4 align="center">
-	🚧  Nequit App 🚀 Completed 🚧
+	Completed
 </h4>
 
 <hr>
@@ -44,19 +44,24 @@ This is an Activities Management Application developed using AndroidFire(Android
 
 Here are some Illustration of App Screens
 
-| ![](screen-shots/dashboard.png) | ![](screen-shots/navigation.png) | ![](screen-shots/profile.png) |
-| :--------------------------------: | :---------------------------------------: | :----------------------------------: |
-|            Home Screen             |            Home Screen Drawer             |            User Profile             |
+| ![](screen-shots/Auth.png) |
+| :--------------------------------:| 
+|            Authentication         |
 
-| ![](screen-shots/splash-screen.png) | ![](screen-shots/sign-in.png) | ![](screen-shots/forgot-pass.png) |
-| :----------------------------------: | :----------------------------: | :----------------------------: |
-|        Splash Screen         |         Sign In Screen         |         Sign Up Screen         |
+| ![](screen-shots/Home.png) |
+| :--------------------------------:| 
+|            Home         |
 
-| ![](screen-shots/member-list.png) | ![](screen-shots/attendance.png) | ![](screen-shots/poll-percentage.png) |
-| :------------------------------------: | :----------------------------------------: | :-------------------------------------------: |
-|         List Of Members         |         Attendance Of Members        |         Poll Results         |
+| ![](screen-shots/Poll.png) |
+| :--------------------------------:| 
+|            Poll       |
 
-| ![](screen-shots/poll-replies.png) | ![](screen-shots/team-rules.png) | ![](screen-shots/news-letter.png) |
-| :---------------------------------: | :------------------------------------: | :---------------------------------: |
-|         Poll Replies         |         Team Rules         |         News Letter        |
+| ![](screen-shots/Attendace.png) |
+| :--------------------------------:| 
+|            Attendace         |
+
+| ![](screen-shots/Contact.png) |
+| :--------------------------------:| 
+|            Contact       |
+
 
